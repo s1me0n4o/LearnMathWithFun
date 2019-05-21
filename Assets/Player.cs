@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     private string userResult;
     private int intUserRes;
 
+    private int enemyResult;
 
     private void Start()
     {
@@ -36,33 +37,21 @@ public class Player : MonoBehaviour
         {
             intUserRes = int.Parse(userResult);
 
-            foreach (GameObject item in EnemySpowner.enemCount)
+            foreach (GameObject enemy in Enemy.enemCount)
             {
-                EnemySpowner.Calc();
-            }
 
-            if (intUserRes == EnemySpowner.result)
-            {
-                animator.SetBool("attack", true);
-                //shout add all enemys and  check for their results
+                if (intUserRes == Enemy.result)
+                {
+                    animator.SetBool("attack", true);
 
-                ////for (int i = 0; i < EnemySpowner.enemCount.Count; i++)
-                ////{
-                ////    EnemySpowner.enemCount[i].GetComponent<Enemy>().KillEnemy();
-                ////    //EnemySpowner.result;
+                    print("SUCCESS");
                 }
-            
-             //   .GetComponent<Enemy>().KillEnemy();
-                print("SUCCESS");
-            }
-            else
-            {
-                animator.SetBool("attack", false);
+                else
+                {
+                    animator.SetBool("attack", false);
+                    print("Not Correct");
+                }
             }
         }
-
-        //print(EnemySpowner.result + "E-Result");
-        //print(userResult + "U-Res");
-
     }
 }
