@@ -1121,7 +1121,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 558583f58c7aa994585fabc4ecad7cd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  userInput: {fileID: 0}
   animator: {fileID: 6929151713889559061}
+  enemy: {fileID: 8008609875275632528, guid: 97719f9ab0eae0d42b9dc6a5bafd85e1, type: 3}
 --- !u!1 &4238205306314473518
 GameObject:
   m_ObjectHideFlags: 0

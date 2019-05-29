@@ -1,5 +1,6 @@
-﻿using System;
+﻿using System.Collections;
 using UnityEngine;
+
 
 public class EnemySpowner : MonoBehaviour
 {
@@ -9,32 +10,50 @@ public class EnemySpowner : MonoBehaviour
     [Header("UI Elements")]
     public float timeBetweenSpown = 5f;
 
-    private float countDown = 2f;
+    public static float countDown = 2f;
 
     public static int enemyAliveCount;
 
     public int MaxDig = 10;
 
+    private GameObject enemySkills;
+
+    public DiggitLabels digitLabels;
+    
     void Update()
     {
+        countDown = Mathf.Clamp(countDown, 0f, Mathf.Infinity);
+        countDown -= Time.deltaTime;
+
         if (countDown <= 0f)
         {
             if (Enemy.enemCount.Count <= 2)
             {
-                Instantiate(enemy, this.transform.position, Quaternion.identity);
-
-                Enemy.GenerateRandomNumbers(MaxDig);
-                
-                Enemy.enemCount.Add(enemy);
-                enemyAliveCount = Enemy.enemCount.Count;
-
+                SpownEnemy();
             }
 
             countDown = timeBetweenSpown;
         }
-        countDown -= Time.deltaTime;
-        countDown = Mathf.Clamp(countDown, 0f, Mathf.Infinity);
 
+    }
+
+    private void SpownEnemy()
+    {
+        enemySkills = Instantiate(enemy, this.transform.position, Quaternion.identity);
+        enemySkills.GetComponent<Enemy>().GenerateRandomNumbers(MaxDig);
+       //ToDo add visual references to the diggits and opperator above the enemy
+
+        // enemySkills.GetComponent<DiggitLabels>().Initialize(digitLabels);
+
+
+        Enemy.enemCount.Add(enemySkills);
+        enemyAliveCount = Enemy.enemCount.Count;
+    }
+
+    IEnumerator WaitAndInstatiate()
+    {
+        yield return new WaitForSeconds(0.5f);
+        
     }
 
 }

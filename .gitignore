@@ -1,1 +1,7 @@
-Library
+/[Ll]ibrary/
+/[Tt]emp/
+
+Library*
+
+ExportedObj/
+*.meta

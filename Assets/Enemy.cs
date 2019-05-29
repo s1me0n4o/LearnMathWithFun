@@ -3,8 +3,6 @@ using System.Collections.Generic;
 
 public class Enemy : MonoBehaviour
 {
-
-
     public Animator animator;
     private GameObject player;
     public UnityEngine.AI.NavMeshAgent agent;
@@ -12,11 +10,9 @@ public class Enemy : MonoBehaviour
     [Header("Calculations")]
     public int maxDigit = 10;
 
-    public static int firstDigit;
-    public static int secondDigit;
     public string opper = "+";
     public static string opperator;
-    public static int result;
+    public int result;
     public static List<GameObject> enemCount = new List<GameObject>();
 
     private void Awake()
@@ -28,7 +24,6 @@ public class Enemy : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player");
         agent.GetComponent<UnityEngine.AI.NavMeshAgent>();
-        
     }
 
     private void Update()
@@ -36,18 +31,20 @@ public class Enemy : MonoBehaviour
         agent.SetDestination(player.transform.position);
     }
 
-    public static void GenerateRandomNumbers(int maxNum)
+    public void GenerateRandomNumbers(int maxNum)
     {
+        int firstDigit;
+        int secondDigit;
+
         System.Random rnd = new System.Random();
         firstDigit = rnd.Next(1, maxNum);
         secondDigit = rnd.Next(1, firstDigit);
-
-
+        
         result = Calc(firstDigit, secondDigit, opperator);
         print(result);
     }
 
-    public static int Calc(int a, int b, string oper)
+    public int Calc(int a, int b, string oper)
     {
         if (oper == "+")
         {
@@ -70,13 +67,12 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        animator.SetBool("walk", false);
-        animator.SetTrigger("attack01");
-
+        if (other.tag == "EndPoint")
+        {
+            enemCount.Clear();
+        }
         KillEnemy();
-
         print("GameOver");
-
     }
 
     public void KillEnemy()

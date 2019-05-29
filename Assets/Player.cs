@@ -10,13 +10,16 @@ public class Player : MonoBehaviour
     private int intUserRes;
 
     private int enemyResult;
+    public GameObject enemy;
+  //  private Enemy enemySkills;
 
     private void Start()
     {
         userResult = string.Empty;
+       // enemySkills = enemy.GetComponent<Enemy>(); 
     }
 
-    void Update()
+    void FixedUpdate()
     {
     //    if (userInput == null)
     //    {
@@ -37,19 +40,21 @@ public class Player : MonoBehaviour
         {
             intUserRes = int.Parse(userResult);
 
-            foreach (GameObject enemy in Enemy.enemCount)
+            foreach (GameObject enem in Enemy.enemCount)
             {
 
-                if (intUserRes == Enemy.result)
+                Enemy enemyCom = enem.GetComponent<Enemy>();
+
+                print(enemyCom.result + "PC");
+                if (intUserRes == enemyCom.result)
                 {
                     animator.SetBool("attack", true);
-
-                    print("SUCCESS");
+                   // print("SUCCESS");
                 }
                 else
                 {
                     animator.SetBool("attack", false);
-                    print("Not Correct");
+                   // print("Not Correct");
                 }
             }
         }

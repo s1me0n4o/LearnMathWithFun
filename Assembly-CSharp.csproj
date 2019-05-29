@@ -66,6 +66,7 @@
     <Compile Include="Assets\Enemy.cs" />
     <Compile Include="Assets\EnemySpowner.cs" />
     <Compile Include="Assets\Player.cs" />
+    <Compile Include="Assets\Timer.cs" />
     <None Include="Assets\JKT_ART\etc\MatCap.shader" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>E:/Unity/LearnMath/MathLearning/LearnMathWithFun/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
